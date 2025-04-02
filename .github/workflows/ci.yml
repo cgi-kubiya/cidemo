@@ -1,0 +1,11 @@
+name: CI/CD Pipeline
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t cgi-kubiya/cidemo:latest .
+          docker push cgi-kubiya/cidemo:latest
