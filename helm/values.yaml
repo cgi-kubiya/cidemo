@@ -5,9 +5,6 @@ app:
     requests:
       cpu: 10m
       memory: 768Mi
-    limits:
-      cpu: 10m
-      memory: 768Mi
   replicas: 3
   hpa:
     enabled: true
