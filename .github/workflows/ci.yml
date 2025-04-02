@@ -1,28 +1,11 @@
 name: CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Build Docker Image
-      run: docker build -t my-service:latest .
-
-    - name: Push Docker Image
-      run: docker push my-service:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f helm/cidemo/deployment.yaml
+      - uses: actions/checkout@v2
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t cidemo .
+          docker push cidemo
