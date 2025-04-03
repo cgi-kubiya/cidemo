@@ -1,0 +1,13 @@
+app:
+  name: cidemo
+  namespace: cidemo-dev
+  resources:
+    requests:
+      cpu: 10m
+      memory: 768Mi
+  replicas: 3
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 80
