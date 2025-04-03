@@ -1,22 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.app.name }}
-  namespace: {{ .Values.app.namespace }}
+  name: cidemo
 spec:
-  replicas: {{ .Values.app.replicas }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.app.name }}
+      app: cidemo
   template:
     metadata:
       labels:
-        app: {{ .Values.app.name }}
+        app: cidemo
     spec:
       containers:
-      - name: {{ .Values.app.name }}
-        image: {{ .Values.app.name }}:latest
+      - name: cidemo
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           requests:
-            cpu: {{ .Values.app.resources.requests.cpu }}
-            memory: {{ .Values.app.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+        ports:
+        - containerPort: 80
+
