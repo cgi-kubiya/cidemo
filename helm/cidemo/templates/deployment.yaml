@@ -15,9 +15,8 @@ spec:
     spec:
       containers:
       - name: {{ .Values.app.name }}
-        image: cgi-kubiya/cidemo:latest
+        image: {{ .Values.app.name }}:latest
         resources:
           requests:
             cpu: {{ .Values.app.resources.requests.cpu }}
             memory: {{ .Values.app.resources.requests.memory }}
-
