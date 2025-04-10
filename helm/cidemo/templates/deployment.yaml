@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.app.name }}
-  namespace: {{ .Values.app.namespace }}
+  name: cidemo
+  namespace: cidemo-v2-dev
 spec:
-  replicas: {{ .Values.app.replicas }}
+  replicas: 3
   selector:
     matchLabels:
-      app: {{ .Values.app.name }}
+      app: cidemo
   template:
     metadata:
       labels:
-        app: {{ .Values.app.name }}
+        app: cidemo
     spec:
       containers:
-      - name: {{ .Values.app.name }}
-        image: {{ .Values.app.name }}:latest
+      - name: cidemo
+        image: docker.io/cgi-kubiya/cidemo:latest
         resources:
           requests:
-            cpu: {{ .Values.app.resources.requests.cpu }}
-            memory: {{ .Values.app.resources.requests.memory }}
+            cpu: 10m
+            memory: 768Mi
+
